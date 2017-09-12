@@ -42,7 +42,6 @@ public class VendorController {
 	
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	
 	@ResponseBody
 	public String update(@RequestBody Vendor vendor) {
 		 
@@ -117,8 +116,29 @@ public class VendorController {
 	@ResponseBody
 	public List<Vendor> search(@RequestParam("searchValue") String searchValue)
 	{
+		System.out.println("search :"+searchValue);
+//	int id=Integer.parseInt(searchValue);
+//		System.out.println("id "+id);
 		List<Vendor> filteredVendors = vendorService.searchByValue(searchValue);
 		
 		return filteredVendors;
+	}
+	
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/reg1", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public String register1(@RequestBody Vendor vendor) {
+		 System.out.println("In  Register 1");
+	    try {	    
+	    	Vendor updatedVendor=vendorService.save(vendor);	      
+    	
+	    }
+	    catch (Exception ex) {
+	      return "Error creating the user: " + ex.toString();
+	    }
+	    return "Registered Successfully ";
+		
+		
+		
 	}
 }

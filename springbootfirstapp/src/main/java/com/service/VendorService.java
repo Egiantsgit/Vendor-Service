@@ -45,18 +45,24 @@ public class VendorService {
 	}
 	
 	public List<Vendor> searchByValue(String searchValue){
-		List<Vendor> vendors= vendorRepository.findAll();
-		List<Vendor> filteredVendors = new ArrayList<Vendor>();
-		for(Vendor ven : vendors){
-			if(ven.getPersonName().contains(searchValue)|| ven.getClient().contains(searchValue)|| ven.getPosition_location().contains(searchValue)
-					|| ven.getPosition_title().contains(searchValue)|| ven.getSubmitted_by().contains(searchValue)||ven.getSubmitted_status().contains(searchValue)
-					||ven.getVendorCompanyName().contains(searchValue)|| ven.getPhone().contains(searchValue))
-			{
-				filteredVendors.add(ven);
-			}
-			
-			
-		}
-		return filteredVendors;
+		System.out.println("Service search :"+searchValue);
+		List<Vendor> vendors= vendorRepository.searchByValue(searchValue.toLowerCase());
+		
+		return vendors;
+//		List<Vendor> filteredVendors = new ArrayList<Vendor>();
+//		for(Vendor ven : vendors){
+//			if((ven.getPersonName().toLowerCase().contains(searchValue.toLowerCase()))|| (ven.getClient().toLowerCase().contains(searchValue.toLowerCase()))
+//					||(ven.getPosition_location().toLowerCase().contains(searchValue.toLowerCase())||
+//					(ven.getPosition_title().toLowerCase().contains(searchValue.toLowerCase()))|| (ven.getSubmitted_by().toLowerCase().contains(searchValue.toLowerCase())))
+//					|| (ven.getSubmitted_status().toLowerCase().contains(searchValue.toLowerCase()))||(ven.getVendorCompanyName().toLowerCase().contains(searchValue.toLowerCase()))
+//					|| (ven.getPhone().contains(searchValue))
+//					)
+//			{
+//				filteredVendors.add(ven);
+//			}
+//			
+//			
+//		}
+//		return filteredVendors;
 	}
 }
